@@ -34,6 +34,7 @@ sudo systemctl disable cups
 # Install and setup usbguard
 sudo dnf install -y usbguard
 sudo usbguard generate-policy > /etc/usbguard/rules.conf
+sudo cp ./assets/usbguard/usbguard-daemon.conf /etc/usbguard/usbguard-daemon.conf
 sudo systemctl restart usbguard
 
 # Install lynis (system auditing tool)
