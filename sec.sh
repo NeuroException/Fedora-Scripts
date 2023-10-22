@@ -37,6 +37,16 @@ sudo usbguard generate-policy > /etc/usbguard/rules.conf
 sudo cp ./assets/usbguard/usbguard-daemon.conf /etc/usbguard/usbguard-daemon.conf
 sudo systemctl restart usbguard
 
+# Enable network MAC-Address randomization
+sudo cp ./assets/NetworkManager/00-macrandomize.conf /etc/NetworkManager/conf.d/00-macrandomize.conf
+sudo systemctl restart NetworkManager
+
+# Disable dnf counting telemetry
+sudo echo "countme=false" >> /etc/dnf/dnf.conf
+
+# Enable DNSSEC
+sudo echo "DNSSEC=yes" >> /etc/systemd/resolved.conf
+
 # Install lynis (system auditing tool)
 sudo dnf install -y lynis
 sudo lynis audit system
